@@ -2,12 +2,15 @@
 
 In this project we're going to examine a set of metagenomes and some plasmids we pull out and assemble from them.
 
-We're going to 
+This project uses data from the paper [Cheng et al., 2020 Cartography of opportunistic pathogens and antibiotic resistance genes in a tertiary hospital environment](https://pubmed.ncbi.nlm.nih.gov/32514171/) 
+as a starting point. 
+
+We're going to:
 - Look at the results of the "STAT" tool from SRA for taxanomic representation in the metagenome.
-- From a set of assembled plasmids indicated in a paper, we've selected some interesting ones and we're going to pull out reads and try to assemble them from metagenomes.
-- We're going to use BLAST to see how well our assemblies represent the target plasmids.
-- We're going to look at AMR, virulence, and stress-resistance genes in those plasmids.
-- We're going to use Pebblescout to see where they likely came from and see if we can find some assemblies and metagenomes that have them.
+- From a set of assembled plasmids indicated in the paper, we've selected some interesting ones and we're going to pull out reads and try to assemble them from metagenomes.
+- Use BLAST to see how well our assemblies represent the target plasmids.
+- Look at AMR, virulence, and stress-resistance genes in those plasmids.
+- Use Pebblescout to see where they likely came from and see if we can find some assemblies and metagenomes that have them.
 
 ## Grab some interesting plasmids from the paper
 
@@ -53,7 +56,7 @@ We should have 3 plasmids in the list now
     cat plasmids/*.fna > plasmid_references.fasta
 ```
 
-### Download reads for some metagenomic samples
+## Download reads for some metagenomic samples
 ```
 cat > sra.acc <<END
 ERR3209766
@@ -80,7 +83,7 @@ done
 
 We're going to isolate the read-pairs aligning to the plasmid to make the assembly problem easier and faster for the assembler. 
 
-These smaller sets of reads are also useful if you want to look closer at the sequence of the reads and how individual reads align to a reference.
+These smaller sets of reads are also useful if you want to look closer at the sequence of the reads and how individual reads align to the plasmid reference.
 
 ```
 bwa-mem2 index plasmid_references.fasta
