@@ -1,4 +1,4 @@
-# Metagenomes and Plasmids
+# Plasmids and Metagenomes
 
 In this project we're going to examine a set of metagenomes and some plasmids we pull out and assemble from them.
 
@@ -38,16 +38,22 @@ We should have 3 plasmids in the list now
 ```
     cat plasmid.list
 ```
+You should see:
+```
+p_1687
+p_83
+p_3128
+```
 
 ### Extract the interesting plasmids from the sequence contigs we downloaded
 ```
-    mkdir plasmids
+mkdir plasmids
 
-    for i in `cat plasmid.list`
-    do
-        # fagrep $i contigs.fa >plasmids/$i.fna
-        seqkit grep -n -r -p "$i\$" contigs.fa > plasmids/$i.fna
-    done
+for i in `cat plasmid.list`
+do
+    # fagrep $i contigs.fa >plasmids/$i.fna
+    seqkit grep -n -r -p "$i\$" contigs.fa > plasmids/$i.fna
+done
 ```
 
 ### For convenience concatenate those into a single file
@@ -56,16 +62,16 @@ We should have 3 plasmids in the list now
     cat plasmids/*.fna > plasmid_references.fasta
 ```
 
-## Download reads for some metagenomic samples
+## Download reads for a couple of metagenomic samples
 ```
 cat > sra.acc <<END
 ERR3209766
 ERR3209768
-ERR3209849
 END
 ```
+<!-- deleted ERR3209849 -->
 
-#### Maybe skip the following in the interests of time...
+#### Maybe skip the following in the interests of time and disk space?
 ```
 date
 for acc in `cat sra.acc`
@@ -102,8 +108,25 @@ _____________
 GO TO SLIDES
 _____________
 
+### Look at how many reads we have filtered down to
 
-### Now we're going to look at the resistome data from Supplementary data 2
+```
+seqkit stats *.fastq
+```
+You should see something like:
+```
+file                       format  type   num_seqs      sum_len  min_len  avg_len  max_len
+ERR3209766_1.fastq         FASTQ   DNA   8,296,848  828,470,982       30     99.9      101
+ERR3209766_2.fastq         FASTQ   DNA   8,296,848  828,470,737       30     99.9      101
+ERR3209766_mapped_1.fastq  FASTQ   DNA      41,211    4,118,496       33     99.9      101
+ERR3209766_mapped_2.fastq  FASTQ   DNA      41,211    4,118,496       33     99.9      101
+ERR3209768_1.fastq         FASTQ   DNA   4,036,058  405,359,151       30    100.4      101
+ERR3209768_2.fastq         FASTQ   DNA   4,036,058  405,359,074       30    100.4      101
+ERR3209768_mapped_1.fastq  FASTQ   DNA     124,749   12,526,481       30    100.4      101
+ERR3209768_mapped_2.fastq  FASTQ   DNA     124,749   12,526,479       30    100.4      101
+```
+
+## Now we're going to look at the resistome data from Supplementary data 2
 
 [Supplementary File 2](https://github.com/NCBI-Codeathons/asm-ngs-workshop/raw/main/blob/supplementary_file_2.xlsx) has information on the taxonomic content and AMR content of shotgun metagenomic samples.
 
@@ -113,8 +136,8 @@ We're looking more closely at a subset of the runs listed here:
 | ----------------- | --------- | ------------------ | ----- | ---------------- | ---------------- | -------------- | ---------- | ---------------- | ------------------- | --------------- |
 |        2017-11-28 | HMBR127_02|         2          |     8 | Isolation room   |                3 | Bed Rail       |            | Plastic          | WEE037              |      ERR3209766 |
 |        2017-11-24 | HMBR133   |         1          |    11 | Isolation room   |                5 | Bed Rail       |            | Plastic          | WEE039              |      ERR3209768 |
-|        2017-11-23 | HMBL103   |         1          |     7 | Standard         |                3 | Bedside Locker | 5          | Wood             | WEE120              |      ERR3209849 |
-
+<!-- |        2017-11-23 | HMBL103   |         1          |     7 | Standard         |                3 | Bedside Locker | 5          | Wood             | WEE120              |      ERR3209849 |
+-->
 
 ### Check out the SRA stat tool results for these isolates
 
@@ -127,7 +150,11 @@ The Analysis tab of the Run selector interface from SRA shows taxonomic breakdow
   ([Direct link](https://trace.ncbi.nlm.nih.gov/Traces/?run=ERR3209768))
 - Click Analysis to see the STAT tool results
 
-### Assemble the filtered reads with SAUTE SKIPPING FOR NOW
+- Click to expand some of the taxa in the list view.
+- Try the Krona view below and look for Klebsiella
+
+
+## Assemble the filtered reads with SAUTE SKIPPING FOR NOW
 
 [SAUTE](https://github.com/ncbi/SKESA) ([Souvorov and Agarwala, 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8293564/) is a reference guided assembler developed at NCBI. We're going to use that to assemble the sequences we pulled out to see if we can find these plasmids in the sequences.
 
@@ -150,8 +177,6 @@ do
 done
 echo `date` Finished assemblies >> log
 ```
-
-#### copy in assemblies
 
 ### Take a look at what we assembled
 ```
@@ -190,6 +215,7 @@ ERR3209849.p_83.all.fa            DNA          0        0        0         0    
 
 ```
 seqkit fx2tab -l -n plasmids/*
+```
 p_1687  195980
 p_3128  227286
 p_83    145343
@@ -198,7 +224,7 @@ p_83    145343
 It looks like there are plasmid assemblies from ERR3209766 and ERR3209768 to p_1687 and p_83.
 We'll take a closer look at p_1687
 
-### Blast assemblies against the reference using web blast
+## Blast assemblies against the reference using web blast
 
 From this we can get an idea of how our assemblies cover the reference.
 
@@ -210,7 +236,7 @@ From this we can get an idea of how our assemblies cover the reference.
 - Choose the assembly file (ERR3209768.p_1687.all.fa) as your "Subject Sequence"
 - Leave all options the default and click "BLAST"
 
-Look at the Graphic Summary tab and see that there is pretty good coverage over the query plasmid in three contigs.
+Look at the Graphic Summary tab and see that there is pretty good coverage over the query plasmid p_1687 in three contigs.
 
 Do the same for the ERR3209766.p_1687.all.fa assembly
 
