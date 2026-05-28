@@ -15,14 +15,14 @@ We're going to:
 
 See [software.md](software.md) for a list of the scientific software used below.
 
-## Make a working directory
+## 1. Make a working directory
 
     mkdir $HOME/microbiome
     cd $HOME/microbiome
 
-## Grab some interesting plasmids from the paper
+## 2. Grab some interesting plasmids from the paper
 
-### Get the assemblies
+### 2.1 Get the assemblies
 ```
 ## obtain plasmid assemblies
 wget https://ndownloader.figshare.com/files/21229998
@@ -30,7 +30,7 @@ mv 21229998 contigs.fa.gz
 gunzip contigs.fa.gz
 ```
 
-### Get some information about the plasmids from supplementary data
+### 2.2 Get some information about the plasmids from supplementary data
 ```
 ## obtain information about the plasmid assemblies
 wget https://ndownloader.figshare.com/files/21229983
@@ -53,7 +53,7 @@ p_83
 p_3128
 ```
 
-### Extract the interesting plasmids from the sequence contigs we downloaded
+### 2.3 Extract the interesting plasmids from the sequence contigs we downloaded
 ```
 mkdir plasmids
 
@@ -64,13 +64,13 @@ do
 done
 ```
 
-### For convenience concatenate those into a single file
+### 2.4 For convenience concatenate those into a single file
 
 ```
     cat plasmids/*.fna > plasmid_references.fasta
 ```
 
-## Download reads for a couple of metagenomic samples
+## 3.  Download reads for a couple of metagenomic samples
 ```
 cat > sra.acc <<END
 ERR3209766
@@ -110,11 +110,7 @@ do
 done
 ```
 
-This should take 5-10 minutes to complete.
-
-_____________
-GO TO SLIDES
-_____________
+This should take 3-5 minutes to complete.
 
 ### Look at how many reads we have filtered down to
 
@@ -151,16 +147,30 @@ We're looking more closely at a subset of the runs listed here:
 
 The Analysis tab of the Run selector interface from SRA shows taxonomic breakdowns of the reads based on alignment to a database of taxon-specific kmers. This is similar to the process used by Kraken if you're familiar with that.
 
-- Go to https://www.ncbi.nlm.nih.gov/
-- Search for the SRA run accession ERR3209768
-- Click the link to see the SRA record
-- Click the SRA accession ERR3209768 in the table at the bottom of the record
+#### Go to https://www.ncbi.nlm.nih.gov/
+
+#### Search for the SRA run accession ERR3209768
+
+![Search for ERR3209768 on the NCBI home page](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics1-search.png)
+
+#### Click the link to see the SRA record
+
+![Click the link to get to the SRA record](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics2-link_to_sra.png)
+
+#### Click the SRA accession ERR3209768 in the table at the bottom of the record to get to the Run Browser
+
+![Click the accession to get to the Run Browser](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics3-go_to_run_browser.png)
   ([Direct link](https://trace.ncbi.nlm.nih.gov/Traces/?run=ERR3209768))
-- Click Analysis to see the STAT tool results
 
-- Click to expand some of the taxa in the list view.
-- Try the Krona view below and look for Klebsiella
+#### Click Analysis to see the STAT tool results
 
+![Click the analysis tab to see STAT tool results](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics4-analysis.png)
+
+#### Click to expand some of the taxa in the list view.
+
+#### Try the Krona view below and look for Klebsiella
+
+![Click *Show Krona View*](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics5-krona.png)
 
 ## Assemble the filtered reads with SAUTE SKIPPING FOR NOW
 
