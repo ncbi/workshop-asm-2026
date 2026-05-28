@@ -197,9 +197,6 @@ ls -l *.all.fa
 -rw-r--r-- 1 jupyter-aprasad jupyter-aprasad 183467 May 23 14:28 ERR3209768.p_1687.all.fa
 -rw-r--r-- 1 jupyter-aprasad jupyter-aprasad      0 May 23 14:28 ERR3209768.p_3128.all.fa
 -rw-r--r-- 1 jupyter-aprasad jupyter-aprasad 182100 May 23 14:29 ERR3209768.p_83.all.fa
--rw-r--r-- 1 jupyter-aprasad jupyter-aprasad      0 May 23 14:29 ERR3209849.p_1687.all.fa
--rw-r--r-- 1 jupyter-aprasad jupyter-aprasad      0 May 23 14:29 ERR3209849.p_3128.all.fa
--rw-r--r-- 1 jupyter-aprasad jupyter-aprasad      0 May 23 14:29 ERR3209849.p_83.all.fa
 ```
 
 We can use seqkit to get a slightly closer look at the assemblies
@@ -216,21 +213,19 @@ ERR3209766.p_83.all.fa    FASTA   DNA          3  104,416   27,125  34,805.3   3
 ERR3209768.p_1687.all.fa  FASTA   DNA          3  182,728   20,518  60,909.3  127,364
 ERR3209768.p_3128.all.fa                       0        0        0         0        0
 ERR3209768.p_83.all.fa    FASTA   DNA          3  181,592   34,554  60,530.7   83,126
-ERR3209849.p_1687.all.fa          DNA          0        0        0         0        0
-ERR3209849.p_3128.all.fa          DNA          0        0        0         0        0
-ERR3209849.p_83.all.fa            DNA          0        0        0         0        0
 ```
 
 ```
 seqkit fx2tab -l -n plasmids/*
+```
 ```
 p_1687  195980
 p_3128  227286
 p_83    145343
 ```
 
-It looks like there are plasmid assemblies from ERR3209766 and ERR3209768 to p_1687 and p_83.
-We'll take a closer look at p_1687
+It looks like there are plasmid assemblies from ERR3209766 and ERR3209768 to p\_1687 and p\_83.
+We'll take a closer look at *p_1687*
 
 ## Blast assemblies against the reference using web blast
 
