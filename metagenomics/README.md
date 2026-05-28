@@ -270,9 +270,14 @@ Pebblescout is a way of very quickly searching for sequences that likely contain
 
 Search using the assembly we already downloaded, ERR3209766.p_1687.all.fa. "*Select WGS, Volume 1*"
 
-We see several assemblies with 90% or more of the kmers covered and they're all _Klebsiella pneumoniae_, so we can surmise that this plasmid often occurs in Klebsiella pneumoniae.
+We see several assemblies with 90% or more of the kmers covered and they're all _Klebsiella pneumoniae_, so we can surmise that this plasmid often occurs in _Klebsiella pneumoniae_.
 
-These Klebsiella pneumoniae assemblies should be in NCBI Pathogen Detection where you can see more about them. Try searching [NCBI Pathogen Detection](https://www.ncbi.nlm.nih.gov/pathogens/) for one or more of the top hits E.g., https://www.ncbi.nlm.nih.gov/pathogens/isolates/#SAMN16824518  Use the cross browser selection to see the AMRFinderPlus results for that isolate. Looks like many of the same genes we saw earlier. 
+These _Klebsiella pneumoniae_ assemblies should be in NCBI Pathogen Detection where you can see more about them. Try searching [NCBI Pathogen Detection](https://www.ncbi.nlm.nih.gov/pathogens/) for one or more of the top hits E.g., https://www.ncbi.nlm.nih.gov/pathogens/isolates/#SAMN16824518  Use the cross browser selection to see the AMRFinderPlus results for that isolate. Looks like many of the same genes we saw earlier. 
+
+
+# Possible future directions
+
+Use NCBI Datasets to download one of the assemblies we found with pebblescout and see if we can pull out contigs aligning to our contig to show that the same plasmid is actually there.
 
 
 
@@ -280,8 +285,3 @@ These Klebsiella pneumoniae assemblies should be in NCBI Pathogen Detection wher
 
 Possibly use NCBI datasets to download one of the pebblescout-associated assemblies (or use 
 
-An interesting paper. Can we find genome assemblies that share the plasmid identified in that paper?
-
-We're going to 1st take a plasmid sequences from a paper
-
-We've already gotten an interesting one 
