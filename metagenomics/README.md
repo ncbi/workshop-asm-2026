@@ -2,8 +2,9 @@
 
 In this project we're going to examine a set of metagenomes and some plasmids we pull out and assemble from them.
 
-This project uses data from the paper [Cheng et al., 2020 Cartography of opportunistic pathogens and antibiotic resistance genes in a tertiary hospital environment](https://pubmed.ncbi.nlm.nih.gov/32514171/) 
+This project uses data from the paper [Cheng et al., 2020 Cartography of opportunistic pathogens and antibiotic resistance genes in a tertiary hospital environment](https://pmc.ncbi.nlm.nih.gov/articles/PMC7303012/) 
 as a starting point. 
+
 
 We're going to:
 - Look at the results of the "STAT" tool from SRA for taxanomic representation in the metagenome.
