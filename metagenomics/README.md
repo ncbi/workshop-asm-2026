@@ -13,6 +13,8 @@ We're going to:
 - Look at AMR, virulence, and stress-resistance genes in those plasmids.
 - Use Pebblescout to see where they likely came from and see if we can find some assemblies and metagenomes that have them.
 
+See [software.md](software.md) for a list of the scientific software used below.
+
 ## Make a working directory
 
     mkdir $HOME/microbiome
