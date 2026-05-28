@@ -275,13 +275,10 @@ We see several assemblies with 90% or more of the kmers covered and they're all 
 These _Klebsiella pneumoniae_ assemblies should be in NCBI Pathogen Detection where you can see more about them. Try searching [NCBI Pathogen Detection](https://www.ncbi.nlm.nih.gov/pathogens/) for one or more of the top hits E.g., https://www.ncbi.nlm.nih.gov/pathogens/isolates/#SAMN16824518  Use the cross browser selection to see the AMRFinderPlus results for that isolate. Looks like many of the same genes we saw earlier. 
 
 
-# Possible future directions
+# Possible stretch project
 
-Use NCBI Datasets to download one of the assemblies we found with pebblescout and see if we can pull out contigs aligning to our contig to show that the same plasmid is actually there.
-
+Use NCBI Datasets to download one of the assemblies we found with pebblescout and see if we can pull out contigs aligning to our contig to see if the same plasmid is actually there.
 
 
 ######################################################################
-
-Possibly use NCBI datasets to download one of the pebblescout-associated assemblies (or use 
 
