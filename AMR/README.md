@@ -1,0 +1,114 @@
+# Antibiotic resistance
+
+In this project we're going to look at antibiotic resistance gene identification using AMRFinderPlus, AST results from the NCBI browser, and compare phenotypes to genotypes.
+
+This is following the vignette https://amrgen.org/articles/AnalysingGenoPhenoData.html or https://amrgen.org/articles/Concordance.html
+
+## Overview
+
+In this project we will:
+- Look up E. coli AMRFinderPlus results from Pathogen Detection data in the [MicroBIGG-E browser](https://www.ncbi.nlm.nih.gov/pathogens/microbigge/) and download them in table form.
+- Look up E. coli antibiotic susceptibility test (AST) results in the Pathogen Detection [AST browser](https://www.ncbi.nlm.nih.gov/pathogens/ast/) and download them in table form.
+- Use the [AMRgen R package](https://amrgen.org/) to compare phenotype and genotype and look for predictive markers.
+
+
+## Look for AMRFinderPlus data in the browsers
+
+He we will identify _Escherichia coli_ and _Shigella_ AMRFinderPlus results filtered to the ciprofloxacin resistance markers in isolates with AST data.
+
+### Log in (if you're not already logged in)
+
+First of all we must be logged in to the NCBI website by clicking in the upper right and making sure you're logged in. This is necessary to use the "Cross-browser selection" feature we will use to limit our search to the relevant isolates.
+
+
+### Go to the AST browser
+
+Click on 
+
+### Use Filters to select Organism group: E.coli and Shigella and Ciprofloxacin
+
+https://www.ncbi.nlm.nih.gov/pathogens/ast#taxgroup_name:%22E.coli%20and%20Shigella%22%20AND%20ANTIBIOTICS:%22ciprofloxacin%22
+
+taxgroup_name:("E.coli and Shigella") AND ANTIBIOTICS:("ciprofloxacin")
+
+You should have 9009 entries (from 9003 isolates)
+
+### Download Tab-delimited (.tsv)
+
+Click the Download link and save `asts.tsv`
+
+### Use Cross-browser selection to "Show in MicroBIGG-E"
+
+### Filter for Subclasses containing QUINOLONE
+
+https://www.ncbi.nlm.nih.gov/pathogens/microbigge/#subclass:(%22AMPICILLIN/CHLORAMPHENICOL/QUINOLONE/RIFAMPIN/TETRACYCLINE%22%20%22AMIKACIN/KANAMYCIN/QUINOLONE/TOBRAMYCIN%22%20%22AMPICILLIN/CHLORAMPHENICOL/FLUOROQUINOLONE/RIFAMPIN/TETRACYCLINE%22%20%22QUINOLONE/TRICLOSAN%22%20%22NITROFURANTOIN/PHENICOL/QUINOLONE/TIGECYCLINE%22%20%22QUINOLONE%22)?use_selection=on
+
+### Download Tab-delimited (.tsv)
+
+Click the *Download* link and select `microbigge.tsv`
+
+Upload the two files you downloaded to the notebook system (`asts.tsv` and `microbigge.tsv`)
+
+### R code
+
+Doesn't work without arrow:
+`devtools::load_all("/netmnt/vast01/gp/home/aprasad/src/AMRgen")`
+
+```
+library(dplyr)
+library(tidyr)
+library(AMR)
+library(ggplot2)
+library(patchwork)
+library(forcats)
+
+
+source("/netmnt/vast01/gp/home/aprasad/src/AMRgen/R/import_geno.R")
+source("/netmnt/vast01/gp/home/aprasad/src/AMRgen/R/amr_upset.R")
+source("/netmnt/vast01/gp/home/aprasad/src/AMRgen/R/utils.R")
+source("/netmnt/vast01/gp/home/aprasad/src/AMRgen/R/data.R")
+load("/netmnt/vast01/gp/home/aprasad/src/AMRgen/data/amrfp_drugs_table.rda")
+source("/netmnt/vast01/gp/home/aprasad/src/AMRgen/R/import_pheno.R")
+source("/netmnt/vast01/gp/home/aprasad/src/AMRgen/R/get_binary_matrix.R")
+source("/netmnt/vast01/gp/home/aprasad/src/AMRgen/R/compare_geno_pheno_id.R")
+source("/netmnt/vast01/gp/home/aprasad/src/AMRgen/R/solo_ppv.R")
+
+
+raw_geno <- read.table('microbigge.tsv', sep="\t", header=TRUE, as.is=TRUE, quote="", comment="") %>%     
+    dplyr::rename(
+      "Gene symbol" = Element.symbol,
+      "Element type" = Type,
+      "Hierarchy_node" = Hierarchy.node.ID,
+      "Element subtype" = Subtype,
+    )
+geno <- import_amrfp(raw_geno, sample_col="BioSample")
+
+pheno <- import_ncbi_pheno('asts.tsv', interpret_clsi=TRUE)
+
+binary_matrix <- get_binary_matrix(
+    geno_table = geno,
+    pheno_table = pheno,
+    pheno_drug = 'Ciprofloxacin',
+    geno_class = c("Quinolones"),
+    sir_col = "pheno_clsi",
+    keep_assay_values = TRUE,
+    keep_assay_values_from = "mic"
+)
+
+cip_solo_ppv <- solo_ppv(binary_matrix=binary_matrix, pheno_table=pheno)
+cip_mic_upset <- amr_upset(binary_matrix, assay = "mic")
+
+# Try filtering for quinolone only, this slighly reduces the number of markers and increases the readability of the graphs
+
+
+
+----------------------------------------------------------------------
+
+https://www.ncbi.nlm.nih.gov/pathogens/isolates/#AST_phenotypes:*%20AND%20taxgroup_name:%22E.coli%20and%20Shigella%22
+
+We go to https://www.ncbi.nlm.nih.gov/pathogens/
+
+Search for 
+
+https://www.ncbi.nlm.nih.gov/pathogens/isolates/#AST_phenotypes:*%20AND%20taxgroup_name:%22E.coli%20and%20Shigella%22
+
