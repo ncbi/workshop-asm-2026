@@ -13,27 +13,32 @@ We're going to:
 - Look at AMR, virulence, and stress-resistance genes in those plasmids.
 - Use Pebblescout to see where they likely came from and see if we can find some assemblies and metagenomes that have them.
 
+## Make a working directory
+
+    mkdir $HOME/microbiome
+    cd $HOME/microbiome
+
 ## Grab some interesting plasmids from the paper
 
 ### Get the assemblies
 ```
-    ## obtain plasmid assemblies
-    wget https://ndownloader.figshare.com/files/21229998
-    mv 21229998 contigs.fa.gz
-    gunzip contigs.fa.gz
+## obtain plasmid assemblies
+wget https://ndownloader.figshare.com/files/21229998
+mv 21229998 contigs.fa.gz
+gunzip contigs.fa.gz
 ```
 
 ### Get some information about the plasmids from supplementary data
 ```
-    ## obtain information about the plasmid assemblies
-    wget https://ndownloader.figshare.com/files/21229983
-    mv 21229983 plasmid_info.tab
+## obtain information about the plasmid assemblies
+wget https://ndownloader.figshare.com/files/21229983
+mv 21229983 plasmid_info.tab
 
-    ## get list of contigs with AMR genes from the paper
-    git clone https://github.com/csb5/hospital_microbiome.git
+## get list of contigs with AMR genes from the paper
+git clone https://github.com/csb5/hospital_microbiome.git
 
-    egrep -i 'ctx|ges|tem|shv' ./hospital_microbiome/tables/plasmid_info.dat | awk '{ if ($5 >= 0) print $0}' | sort -nrk5 | head -3 | cut -f2 >plasmid.list
-    ## result is 3 plasmids
+egrep -i 'ctx|ges|tem|shv' ./hospital_microbiome/tables/plasmid_info.dat | awk '{ if ($5 >= 0) print $0}' | sort -nrk5 | head -3 | cut -f2 >plasmid.list
+## result is 3 plasmids
 ```
 We should have 3 plasmids in the list now
 ```
