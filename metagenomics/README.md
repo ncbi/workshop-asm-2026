@@ -172,7 +172,7 @@ The Analysis tab of the Run selector interface from SRA shows taxonomic breakdow
 
 ![Click *Show Krona View*](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics5-krona.png)
 
-## Assemble the filtered reads with SAUTE SKIPPING FOR NOW
+## Assemble the filtered reads with SAUTE 
 
 [SAUTE](https://github.com/ncbi/SKESA) ([Souvorov and Agarwala, 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8293564/) is a reference guided assembler developed at NCBI. We're going to use that to assemble the sequences we pulled out to see if we can find these plasmids in the sequences.
 
@@ -241,13 +241,31 @@ We'll take a closer look at *p_1687*
 
 From this we can get an idea of how our assemblies cover the reference.
 
-- Download the assembly ERR3209768.p_1687.all.fa by right clicking on the filename in the Jupyter file list and selecting "Download".
-- Download the reference plasmids file (plasmid_references.fasta) the same way.
-- Go to nucleotide blast (https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome)
-- Select the reference plasmids file (plasmid_references.fasta) as your "Query Sequence"
-- Select "Align two or more sequences"
-- Choose the assembly file (ERR3209768.p_1687.all.fa) as your "Subject Sequence"
-- Leave all options the default and click "BLAST"
+#### Download the assembly files
+
+Download *`ERR3209768.p_1687.all.fa`* and the plasmid references `plasmid_references.fasta` by right clicking on the filename in the Jupyter file list and selecting "Download".
+
+![Right click the filename and select download](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics7-file_download.png)
+
+#### Go to nucleotide blast 
+
+    [Nucleotide BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch) - <https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch>
+
+#### Select the reference plasmids file (plasmid_references.fasta) as your "Query Sequence" and select "Align two or more seuences"
+
+Click *Choose File* and select the `plasmid_references.fasta` file you just downloaded then click the *Align two or more sequences* checkbox.
+
+![Choose plasmid_references.fasta as the Query sequence and click Align two or more sequences](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics8-query_sequence.png)
+
+#### Choose the assembly file (ERR3209768.p_1687.all.fa) as your "Subject Sequence"
+
+![Select ERR3209768.p_1687.all.fa as the subject sequence](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics9-subject_sequence.png)
+
+#### Leave all other options the default and click "BLAST"
+
+#### View the Graphic Summary
+
+![View the Graphic Summary](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/metagenomics10-graphic_summary.png)
 
 Look at the Graphic Summary tab and see that there is pretty good coverage over the query plasmid p_1687 in three contigs.
 
