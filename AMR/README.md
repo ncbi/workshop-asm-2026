@@ -34,8 +34,7 @@ We're going to look at ciprofloxacin resistance in _E. coli_ and _Shigella_
 
 #### Click the Filters bar to open filters interface
 
-![Filters bar](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/re
-fs/heads/main/images/amr1-ast_filters.png)
+![Filters bar](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/amr1-ast_filters.png)
 
 #### Select the *Antibiotic* filter
 
