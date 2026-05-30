@@ -12,20 +12,44 @@ In this project we will:
 - Use the [AMRgen R package](https://amrgen.org/) to compare phenotype and genotype and look for predictive markers.
 
 
-## Look for AMRFinderPlus data in the browsers
+## Look for AMRFinderPlus data in the Pathogen Detection browsers
 
 He we will identify _Escherichia coli_ and _Shigella_ AMRFinderPlus results filtered to the ciprofloxacin resistance markers in isolates with AST data.
+
+Go to <https://www.ncbi.nlm.nih.gov/pathogens>.
 
 ### Log in (if you're not already logged in)
 
 First of all we must be logged in to the NCBI website by clicking in the upper right and making sure you're logged in. This is necessary to use the "Cross-browser selection" feature we will use to limit our search to the relevant isolates.
 
+Click the "Log in" button in the top right of the screen and log into your NCBI account. If you don't have one you can create one now.
 
 ### Go to the AST browser
 
-Click on 
+Once you've logged into the you're back to the [Pathogen Detection homepage](https://www.ncbi.nlm.nih.gov/pathogens/) click on the [Antibiotic Susceptiblity test (AST) Browser](https://www.ncbi.nlm.nih.gov/pathogens/ast/) link.
+
+We're going to look at ciprofloxacin resistance in _E. coli_ and _Shigella_
 
 ### Use Filters to select Organism group: E.coli and Shigella and Ciprofloxacin
+
+#### Click the Filters bar to open filters interface
+
+![Filters bar](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/re
+fs/heads/main/images/amr1-ast_filters.png)
+
+#### Select the *Antibiotic* filter
+
+![Antibiotic filter](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/amr2-antibiotic_filter.png)
+
+#### Select ciprofloxacin
+
+(1) Type *cipro* in the search box then (2) select *ciprofloxacin* from the list below.
+
+![Select ciprfloxacin](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/amr3-select_cipro.png)
+
+In the table below you'll now see all the AST results for ciprofloxacin. 
+
+#### Select the *Organism group* filter
 
 https://www.ncbi.nlm.nih.gov/pathogens/ast#taxgroup_name:%22E.coli%20and%20Shigella%22%20AND%20ANTIBIOTICS:%22ciprofloxacin%22
 
