@@ -141,5 +141,5 @@ chmod 755 compare_amr.R
 
 You should have a new file in your directory **Rplots.pdf**. Double-click it to view it.
 
-It should look like: [Rplots.pdf](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/Rplots.pdf<br />
+It should look like: [Rplots.pdf](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/Rplots.pdf)<br />
 <!-- ![AMRgen upset plot comparing AST results to AMRFinderPlus quinolone resistance genotypes](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/Rplots.png) -->
