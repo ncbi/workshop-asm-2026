@@ -58,7 +58,7 @@ You should have 9009 entries (from 9003 isolates)
 
 ### Download Tab-delimited (.tsv)
 
-Click the ![Download](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/amr4-download_button.png) button and download in the default `asts.tsv` in Tab-delimited format. 
+Click the ![Download](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/amr5-download_button.png) button and download in the default `asts.tsv` in Tab-delimited format. 
 
 
 ### Use Cross-browser selection to "Show in MicroBIGG-E"
@@ -96,28 +96,49 @@ AMRgen uses the Hierarchy node to identify resistance elements, so we will add t
 
 ### Download the table in Tab-delimited (.tsv) format
 
-Click the ![Download](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/amr4-download_button.png) button and download in the default `microbigge.tsv` in Tab-delimited format. 
+Click the ![Download](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/amr5-download_button.png) button and download in the default `microbigge.tsv` in Tab-delimited format. 
 
 ## Compare genotypes to phenotypes
 
 We're going to use [AMRgen](https://amrgen.org/) to get a quick view of the relationship between genotype and phenotype. 
 
-### Switch back to your Jupyter notebook
+### Switch your Jupyter notebook
+
+<https://jupyterhub01.ncbi.nlm.nih.gov/>
 
 ### Upload the data you downloaded from the browsers
 
+#### Click the upload button
+
+![Upload button](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/amr10-jupyter_upload_button.png)
+
+#### Upload the files *asts.tsv* and *microbigge.tsv* that we downloaded from the Pathogen Detection Browsers
+
 ### Open a terminal tab
 
-### Download compare_amr.R
+![Terminal tab](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/amr11-terminal.png)
+
+### Get the compare_amr.R script and make it executable
+
+```
+wget https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/AMR/compare_amr.R
+chmod 755 compare_amr.R
+```
+###
 
 ### Run compare_amr.R
 
 ```
-./compare_amr_local.R
-   --drug=Ciprofloxacin
-   --taxgroup="Pseudomonas aeruginosa"
-   --drug_class_list="Quinolones"
-   --phenotypes=asts.tsv 
+./compare_amr.R \
+   --drug=Ciprofloxacin \
+   --taxgroup="Pseudomonas aeruginosa" \
+   --drug_class_list="Quinolones" \
+   --phenotypes=asts.tsv \
    --genotypes=microbigge.tsv
 ```
 
+### Take a look at the resulting plot
+
+You should have a new file in your directory **Rplots.pdf**. Double-click it to view it.
+
+It should look like ![AMRgen upset plot comparing AST results to AMRFinderPlus quinolone resistance genotypes](https://raw.githubusercontent.com/ncbi/workshop-asm-2026/refs/heads/main/images/Rplots.png)
