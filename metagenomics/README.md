@@ -304,11 +304,36 @@ We will use [pebblescout](https://pebblescout.ncbi.nlm.nih.gov/#view=search) to 
 
 Pebblescout is a way of very quickly searching for sequences that likely contain our query sequence based on the selection of 25mers. It looks at the presence of kmers weighing rare kmers more highly than common ones.
 
-Search using the assembly we already downloaded, `ERR3209768.p_1687.all.fa`. "*Select WGS, Volume 1*"
+### 8.1 Go to [Pebblescout](https://pebblescout.ncbi.nlm.nih.gov/#view=search) 
+
+### 8.2 Query using the assembly we already downloaded, `ERR3209768.p_1687.all.fa`. 
+
+Click **Choose File** and select `ERR3209768.p_1687.all.fa` from your downloads directory.
+
+### 8.3 Select the WGS, Volume 1 index
+
+### 8.4 Click View to see the results
+
+- Note the **%coverage** and **PBScore** values. 
+- Open some of the biosample accessions in a new tab to get an idea of what these isolates are
 
 We see several assemblies with 90% or more of the kmers covered and they're all _Klebsiella pneumoniae_, so we can surmise that this plasmid often occurs in _Klebsiella pneumoniae_.
 
+### 8.5 Take a top hit and look at it in MicroBIGG-E
+
 These _Klebsiella pneumoniae_ assemblies should be in NCBI Pathogen Detection where you can see more about them. Try searching [NCBI Pathogen Detection](https://www.ncbi.nlm.nih.gov/pathogens/) for one or more of the top hits E.g., https://www.ncbi.nlm.nih.gov/pathogens/isolates/#SAMN16824518  Use the cross browser selection to see the AMRFinderPlus results for that isolate. Looks like many of the same genes we saw earlier. 
+
+#### Search for SAMN16824518 in MicroBIGG-E
+
+- Go to [MicroBIGG-E](https://www.ncbi.nlm.nih.gov/pathogens/microbigge/) and paste in SAMN16824518
+  ([direct link](https://www.be-md.ncbi.nlm.nih.gov/pathogens/microbigge/#SAMN16824518)
+- Sort by contig ID and notice some of the same sets of genes
+
+#### Search for SAMN16824518 in the Isolates browser
+
+- Use cross-browser selection or search for SAMN16824518
+- Note that it isn't in a "SNP cluster", and the **Location** and **AMR genotypes** columns
+
 
 
 # Stretch project
